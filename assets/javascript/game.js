@@ -52,7 +52,7 @@ $("#search").keyup( function(event) {
             var gifDiv = $("<img>").addClass("gifWall").attr("src", gifBank[i].images.original.url)
                 targetDiv = "#box" + i
             $(targetDiv).html(gifDiv)
-            $("img").hide().delay(i+"00").fadeIn(2500)
+            $("img").hide().delay(i+"00").fadeIn(6000)
         }
     })
     }
