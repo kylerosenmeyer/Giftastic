@@ -54,6 +54,10 @@ $("#search").keyup( function(event) {
             $(targetDiv).html(gifDiv)
             $("img").hide().delay(i+"00").fadeIn(6000)
         }
+        $("#instruction, #mini").slideUp(2000)
+        $(".entry").animate( {
+            margin: "-2.5% 0% 0% -15%",
+        },2000)
     })
     }
 });

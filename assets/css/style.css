@@ -24,14 +24,13 @@ input {
 
 .entry {
     position: absolute;
-    margin: auto;
     top: 50%;
     left: 50%;
     width: 30%;
-    height: 25%;
+    /* height: 25%; */
     margin-top: -5%;
     margin-left: -15%;
-    padding: 3.5% 5% 2%;
+    padding: 1% 5%;
     z-index: 1;
     animation-name: entry;
     animation-duration: 4s;
@@ -50,6 +49,10 @@ input {
 #mini {
     margin-top: 8%;
     font-size: 12px;
+}
+
+#instruction {
+    padding-top: 1.5%;
 }
 
 /*animation-styling*/
@@ -124,7 +127,7 @@ input {
  @media screen and (max-width: 800px) {
     .entry {
         width: 55%;
-        height: 25%;
+        /* height: 25%; */
         left: 40%;
         top: 45%;
         padding: 5.5% 4% 2%;
