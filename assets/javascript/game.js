@@ -11,6 +11,7 @@
 
 $(document).ready( function() {
     $(".entry").fadeIn(2000)
+    
 })
 
 
@@ -20,18 +21,21 @@ $(document).ready( function() {
 
 $("#search").keyup( function(event) {
 
+    
+    
     var searchTerm = $("#search").val()
+
     searchURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=y6FqsGJKmXIeJk0UzATA8566ltUPQsSU&limit=17";
 
     if ( searchTerm === "" ) {
         searchTerm = " "
-    }
+    } 
     console.log("this is the searchTerm: " + searchTerm)
     console.log(event.keyCode)
     event.preventDefault();
 
     if ( event.keyCode === 13 ) {
-
+    
     $.ajax({
         url: searchURL,
         method: "GET"
