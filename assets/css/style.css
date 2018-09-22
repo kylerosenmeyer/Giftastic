@@ -1,3 +1,4 @@
+/*Set the html/body to the size of the screen, set font and align it center*/
 html, body {
     height: 100%;
     margin: 0;
@@ -6,28 +7,32 @@ html, body {
 
 }
 
+/*Set the height of the container to the page*/
+.container-fluid {
+    height: 100%;
+}
+/*Set the set the height of a row to exactly one quarter of the page*/
+.row {
+    height: 25%;
+}
+
+/*Search Styling Section*/
+
+/*Set the animation in play for the input field, and align the search text*/
 input {
     text-align: center;
     animation-name: search;
     animation-duration: 4s;
     animation-fill-mode: forwards;
 }
-.container-fluid {
-    height: 100%;
-}
 
-.row {
-    height: 25%;
-}
-
-/*search styling*/
-
+/*Style the entry box to be absolutley in the center of the page and run an animation on it*/
 .entry {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 30%;
-    /* height: 25%; */
+    border: 5px ridge rgb(100,100,100, 0.8);
     margin-top: -5%;
     margin-left: -15%;
     padding: 1% 5%;
@@ -37,26 +42,32 @@ input {
     animation-fill-mode: forwards;
 }
 
+/*This is the input box, remove the border and put a border on the bottom*/
 #search {
     border: none;
     border-bottom: 2px solid black;
 }
+
+/*Don't show the outline on the input field when you click it*/
 #search:focus {
     outline: none;
     
 }
 
+/*Set the style for the logo text at the bottom of the entry box*/
 #mini {
     margin-top: 8%;
     font-size: 12px;
 }
 
+/*Set the styling of the search intstructions*/
 #instruction {
     padding-top: 1.5%;
 }
 
-/*animation-styling*/
+/*Animation Styling Section*/
 
+/*The grid keyframe brings in the grid borders at the start of the app*/
 @keyframes grid {
     0% {    border: 0px solid rgb(50,50,50, 0.8);
             box-shadow: 0px 0px 0px 0px rgb(50,50,50, 0.8);}
@@ -66,21 +77,22 @@ input {
             box-shadow: 0px 0px 15px 3px rgba(255, 255, 255);}
 }
 
+/*The entry keyframe brings in the box shadow and changes the color of the entry box*/
 @keyframes entry {
     0% {    background-color: rgb(50,50,50);
-            border: 0px solid rgb(50,50,50, 0.8);
             box-shadow: 0px 0px 0px 0px rgb(50,50,50, 0.8);}
     100% {  background-color: rgb(255, 255, 255);
-            border: 5px ridge rgb(100,100,100, 0.8);
             box-shadow: 0px 0px 0px 10px rgb(20, 20, 20), 
                         5px 5px 10px 10px rgb(50,50,50, 0.8);}
 }
 
+/*The search keyframe changes the background color of the search input field*/
 @keyframes search {
     0% {    background-color: rgb(50,50,50);}
     100% {  background-color: rgb(255, 255, 255);}
 }
 
+/*This webkit keyframe for grid makes the grid animation work on safari*/
 @-webkit-keyframes grid {
     0% {    border: 0px solid rgb(50,50,50, 0.8);
             box-shadow: 0px 0px 0px 0px rgb(50,50,50, 0.8);}
@@ -90,6 +102,7 @@ input {
             box-shadow: 0px 0px 15px 3px rgb(255, 255, 255);}
 }
 
+/*This webkit keyframe for entry makes the grid animation work on safari*/
 @-webkit-keyframes entry {
     0% {    background-color: rgb(50,50,50);
             border: 0px solid rgb(50,50,50, 0.8);
@@ -100,14 +113,16 @@ input {
                         5px 5px 10px 10px rgb(50,50,50, 0.8);}
 }
 
+/*This webkit keyframe for search makes the grid animation work on safari*/
 @-webkit-keyframes search {
     0% {    background-color: rgb(50,50,50);}
     100% {  background-color: rgb(255, 255, 255);}
 }
 
 
-/*box styling*/
+/*The Gif Box Styling*/
 
+/*This styles all the gif Boxes.*/
 .col-3 {
     margin: 0px;
     padding: 0px;
@@ -117,6 +132,7 @@ input {
     animation-fill-mode: forwards;  
 }
 
+/*This styles all the images and fits them to their gif box*/
 .gifWall {
     width: 100%;
     height: 100%;
@@ -124,6 +140,7 @@ input {
     padding: 0;
 }
 
+/*These media queries changes the location and size of the entry box.*/
  @media screen and (max-width: 800px) {
     .entry {
         width: 55%;
