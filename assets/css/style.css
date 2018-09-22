@@ -25,9 +25,13 @@ input {
 .entry {
     position: absolute;
     margin: auto;
-    top: 40%;
-    left: 37%;
-    padding: 3% 5%;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 25%;
+    margin-top: -5%;
+    margin-left: -15%;
+    padding: 3.5% 5% 2%;
     z-index: 1;
     animation-name: entry;
     animation-duration: 4s;
@@ -87,7 +91,7 @@ input {
     padding: 0;
 }
 
-@media screen and (max-width: 1300px) {
+/* @media screen and (max-width: 1300px) {
     .entry {
         left: 37%;
     }
@@ -116,25 +120,30 @@ input {
         left: 32%;
     }
 }
-
-@media screen and (max-width: 800px) {
+*/
+ @media screen and (max-width: 800px) {
     .entry {
-        left: 30%;
+        width: 50%;
+        height: 25%;
+        left: 40%;
+        top: 45%;
+        padding: 5.5% 4% 2%;
     }
-}
-
+} 
+/*
 @media screen and (max-width: 700px) {
     .entry {
         left: 28%;
     }
 }
-
+*/
 @media screen and (max-width: 600px) {
     .entry {
-        left: 25%;
+        top: 42%; 
+        padding: 6% 2% 1%;
     }
 }
-
+/*
 @media screen and (max-width: 500px) {
     .entry {
         left: 24.5%;
@@ -145,4 +154,4 @@ input {
     .entry {
         left: 20%;
     }
-}
+} */
