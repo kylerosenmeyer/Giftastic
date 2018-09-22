@@ -47,6 +47,11 @@ input {
     
 }
 
+#mini {
+    margin-top: 8%;
+    font-size: 12px;
+}
+
 /*animation-styling*/
 
 @keyframes grid {
@@ -54,7 +59,7 @@ input {
             box-shadow: 0px 0px 0px 0px rgb(50,50,50, 0.8);}
     20% {    border: 0px solid rgb(50,50,50, 0.8);
             box-shadow: 0px 0px 0px 0px rgb(50,50,50, 0.8);}
-    100% {  border: 1px solid rgba(255, 255, 255, 0.8);
+    100% {  border: 1px solid rgb(255, 255, 255, 0.8);
             box-shadow: 0px 0px 15px 3px rgba(255, 255, 255);}
 }
 
@@ -62,7 +67,7 @@ input {
     0% {    background-color: rgb(50,50,50);
             border: 0px solid rgb(50,50,50, 0.8);
             box-shadow: 0px 0px 0px 0px rgb(50,50,50, 0.8);}
-    100% {  background-color: rgba(255, 255, 255);
+    100% {  background-color: rgb(255, 255, 255);
             border: 5px ridge rgb(100,100,100, 0.8);
             box-shadow: 0px 0px 0px 10px rgb(20, 20, 20), 
                         5px 5px 10px 10px rgb(50,50,50, 0.8);}
@@ -70,7 +75,7 @@ input {
 
 @keyframes search {
     0% {    background-color: rgb(50,50,50);}
-    100% {  background-color: rgba(255, 255, 255);}
+    100% {  background-color: rgb(255, 255, 255);}
 }
 
 /*box styling*/
@@ -91,67 +96,20 @@ input {
     padding: 0;
 }
 
-/* @media screen and (max-width: 1300px) {
-    .entry {
-        left: 37%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .entry {
-        left: 36%;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    .entry {
-        left: 34%;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .entry {
-        left: 33%;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .entry {
-        left: 32%;
-    }
-}
-*/
  @media screen and (max-width: 800px) {
     .entry {
-        width: 50%;
+        width: 55%;
         height: 25%;
         left: 40%;
         top: 45%;
         padding: 5.5% 4% 2%;
     }
 } 
-/*
-@media screen and (max-width: 700px) {
-    .entry {
-        left: 28%;
-    }
-}
-*/
+
 @media screen and (max-width: 600px) {
     .entry {
         top: 42%; 
         padding: 6% 2% 1%;
     }
 }
-/*
-@media screen and (max-width: 500px) {
-    .entry {
-        left: 24.5%;
-    }
-}
 
-@media screen and (max-width: 450px) {
-    .entry {
-        left: 20%;
-    }
-} */
