@@ -49,7 +49,7 @@ $("#search").keyup( function(event) {
 
         for ( let i=1; i<17; i++ ) {
             console.log("this is i: " + i)
-            var gifDiv = $("<img>").addClass("gifWall").attr("src", gifBank[i].images.original.url)
+            var gifDiv = $("<img>").addClass("gifWall").attr("src", gifBank[i].images.original.url).attr("video-state", gifBank[i].images.original.url).attr("image-state", gifBank[i].images.original_still.url).attr("toggle", "video");
                 targetDiv = "#box" + i
             $(targetDiv).html(gifDiv)
             $("img").hide().delay(i+"00").fadeIn(6000)
@@ -60,4 +60,16 @@ $("#search").keyup( function(event) {
         },2000)
     })
     }
+
+    $("body").on("click", ".gifWall", function() {
+        var image = $(this).attr("image-state"),
+            video = $(this).attr("video-state"),
+            action = "still"
+        if ( $(this).attr("toggle") === "video" ) {
+            $(this).attr("toggle", action).attr("src", image)
+        } else if ( $(this).attr("toggle") === "still" ) {
+            action = "video"
+            $(this).attr("toggle", action).attr("src", video)
+        }
+    })  
 });
