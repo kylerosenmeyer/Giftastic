@@ -42,6 +42,143 @@ input {
     animation-fill-mode: forwards;
 }
 
+#favEntry {
+    top: 59%;
+    margin-top: 0;
+}
+
+/*This is the styling for the previous searches*/
+
+.oldButton {
+    background-color: none;
+    border: none;
+    outline: none;
+    padding: 2% 3%;
+    margin-top: 5px;
+    border: 2px solid rgb(100,100,100, 0)
+}
+
+.oldButton:hover {
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid rgb(100,100,100, 1)
+}
+
+.oldButton:focus, .return {
+    outline: none;
+}
+
+/*This is the styling for the pause information and favorites button*/
+
+.gif-desc {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    color: rgb(255, 255, 255, 0.8);
+    text-align: left;
+}
+
+.download {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    color: rgb(255, 255, 255, 0.8);
+    background-color: rgb(100,100,100, 0.8);
+    border: none;
+    padding: 3% 3% 2%;
+}
+
+.fdownload {
+    position: absolute;
+    bottom: 10%;
+    left: 65%;
+    color: rgb(255, 255, 255, 0.8);
+    background-color: rgb(100,100,100, 0.8);
+    border: none;
+    padding: 3% 3% 2%;
+}
+
+.saveGif {
+    position: absolute;
+    bottom: 10%;
+    left: 85%;
+    color: rgb(255, 255, 255, 0.8);
+    background-color: rgb(100,100,100, 0.8);
+    border: none;
+    padding: 3% 3% 2%;
+}
+
+.download:hover, .saveGif:hover {
+    color: rgb(100,100,100, 1);
+    background-color: rgb(255, 255, 255, 1);
+    box-shadow: 0px 0px 3px 3px rgb(255, 255, 255, 1);
+    text-decoration: none;
+
+}
+
+.fa-heart {
+    color: rgb(255, 255, 255, 0.8);
+}
+
+.saveGif:hover > .fa-heart {
+    color: rgb(100,100,100, 1);
+}
+
+.favorites {
+    color: rgb(255, 255, 255, 0.8);
+    background-color: rgb(100,100,100, 0.8);
+    border: none;
+    padding: 2% 3% 2%;
+    margin: 5px -20% 0px 0px;
+    float: right;
+    font-size: 12px;
+    border: 2px solid rgb(100,100,100, 0)
+
+}
+
+.favorites:hover {
+    color: rgb(100,100,100, 1);
+    background-color: rgb(255, 255, 255, 1);
+    box-shadow: 0px 0px 3px 3px rgb(255, 255, 255, 1);
+    text-decoration: none;
+    border: 2px solid rgb(100,100,100, 1)
+
+}
+
+.favorites:hover > .fa-heart {
+    color: rgb(100,100,100, 1);
+}
+
+.return {
+    color: rgb(255, 255, 255, 0.8);
+    background-color: rgb(100,100,100, 0.8);
+    border: none;
+    float: right;
+    padding: 2% 3% 2%;
+    margin: 5px -20% 5px 0px;
+    font-size: 12px;
+    border: 2px solid rgb(100,100,100, 0)
+
+}
+
+h4 {
+    font-size: 16px;
+    float: left;
+    margin: 12px 0px 5px -20%;
+}
+
+.return:hover {
+    color: rgb(100,100,100, 1);
+    background-color: rgb(255, 255, 255, 1);
+    box-shadow: 0px 0px 3px 3px rgb(255, 255, 255, 1);
+    text-decoration: none;
+    border: 2px solid rgb(100,100,100, 1)
+
+}
+
+
+
+
 /*This is the input box, remove the border and put a border on the bottom*/
 #search {
     border: none;
@@ -148,6 +285,7 @@ input {
         left: 37%;
         top: 45%;
         padding: 5.5% 4% 2%;
+        border-radius: none;
     }
 } 
 
@@ -157,6 +295,7 @@ input {
         top: 42%; 
         padding: 6% 2% 3%;
         left: 34%;
+        border-radius: none;
     }
 }
 
