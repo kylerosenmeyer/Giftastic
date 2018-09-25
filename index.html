@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../Giftastic/assets/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+    <script src="../Giftastic/assets/javascript/setup.js"></script>
     
 </head>
 <body>
@@ -21,113 +23,114 @@
                 <input type="text" id="search">
                 <p id="mini">&copy; Kyle Rosenmeyer 2018</p>
                 <div id="past"></div>
-                <button class="favorites">Favorites<i class="fa fa-heart"></i></button>
+                <button class="favorites">Favorites <i class="fa fa-heart"></i></button>
+                <button class="clear">Clear <i class="fa fa-trash"></i></button>
         </div>
         <!--This is the grid of gif Boxes. There are four rows with four columns per-->
         <div class="row row1">
             <div class="col-3">
-                <div id="box1"></div>
+                <div class="graphics" id="box1"></div>
                 <p class="gif-desc" id="desc1"></p>
-                <a class="download" id="download1" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download1" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save1"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box2"></div>
+                <div class="graphics" id="box2"></div>
                 <p class="gif-desc" id="desc2"></p>
-                <a class="download" id="download2" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download2" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save2"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box3"></div>
+                <div class="graphics" id="box3"></div>
                 <p class="gif-desc" id="desc3"></p>
-                <a class="download" id="download3" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download3" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save3"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box4"></div>
+                <div class="graphics" id="box4"></div>
                 <p class="gif-desc" id="desc4"></p>
-                <a class="download" id="download4" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download4" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save4"><i class="fa fa-heart"></i></a>
             </div>
         </div>
 
         <div class="row row2">
             <div class="col-3">
-                <div id="box5"></div>
+                <div class="graphics" id="box5"></div>
                 <p class="gif-desc" id="desc5"></p>
-                <a class="download" id="download5" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download5" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save5"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box6"></div>
+                <div class="graphics" id="box6"></div>
                 <p class="gif-desc" id="desc6"></p>
-                <a class="download" id="download6" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download6" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save6"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box7"></div>
+                <div class="graphics" id="box7"></div>
                 <p class="gif-desc" id="desc7"></p>
-                <a class="download" id="download7" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download7" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save7"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box8"></div>
+                <div class="graphics" id="box8"></div>
                 <p class="gif-desc" id="desc8"></p>
-                <a class="download" id="download8" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download8" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save8"><i class="fa fa-heart"></i></a>
             </div>
         </div>
 
         <div class="row row3">
             <div class="col-3">
-                <div id="box9"></div>
+                <div class="graphics" id="box9"></div>
                 <p class="gif-desc" id="desc9"></p>
-                <a class="download" id="download9" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download9" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save9"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box10"></div>
+                <div class="graphics" id="box10"></div>
                 <p class="gif-desc" id="desc10"></p>
-                <a class="download" id="download10" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download10" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save10"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box11"></div>
+                <div class="graphics" id="box11"></div>
                 <p class="gif-desc" id="desc11"></p>
-                <a class="download" id="download11" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download11" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save11"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box12"></div>
+                <div class="graphics" id="box12"></div>
                 <p class="gif-desc" id="desc12"></p>
-                <a class="download" id="download12" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download12" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save12"><i class="fa fa-heart"></i></a>
             </div>
         </div>
 
         <div class="row row4">
             <div class="col-3">
-                <div id="box13"></div>
+                <div class="graphics" id="box13"></div>
                 <p class="gif-desc" id="desc13"></p>
-                <a class="download" id="download13" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download13" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save13"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box14"></div>
+                <div class="graphics" id="box14"></div>
                 <p class="gif-desc" id="desc14"></p>
-                <a class="download" id="download14" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download14" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save14"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box15"></div>
+                <div class="graphics" id="box15"></div>
                 <p class="gif-desc" id="desc15"></p>
-                <a class="download" id="download15" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download15" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save15"><i class="fa fa-heart"></i></a>
             </div>
             <div class="col-3">
-                <div id="box16"></div>
+                <div class="graphics" id="box16"></div>
                 <p class="gif-desc" id="desc16"></p>
-                <a class="download" id="download16" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download" id="download16" target="blank" href="" download><i class="fa fa-download"></i></a>
                 <a class="saveGif" id="save16"><i class="fa fa-heart"></i></a>
             </div>
         </div>
@@ -144,93 +147,93 @@
         <!--This is the grid of gif Boxes. There are four rows with four columns per-->
         <div class="row row1">
             <div class="col-3">
-                <div id="fave1"></div>
+                <div class="graphics" id="fave1"></div>
                 <p class="gif-desc" id="fdesc1"></p>
-                <a class="fdownload" id="fdownload1" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload1" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave2"></div>
+                <div class="graphics" id="fave2"></div>
                 <p class="gif-desc" id="fdesc2"></p>
-                <a class="fdownload" id="fdownload2" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload2" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave3"></div>
+                <div class="graphics" id="fave3"></div>
                 <p class="gif-desc" id="fdesc3"></p>
-                <a class="fdownload" id="fdownload3" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload3" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave4"></div>
+                <div class="graphics" id="fave4"></div>
                 <p class="gif-desc" id="fdesc4"></p>
-                <a class="fdownload" id="fdownload4" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload4" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
         </div>
 
         <div class="row row2">
             <div class="col-3">
-                <div id="fave5"></div>
+                <div class="graphics" id="fave5"></div>
                 <p class="gif-desc" id="fdesc5"></p>
-                <a class="fdownload" id="fdownload5" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload5" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave6"></div>
+                <div class="graphics" id="fave6"></div>
                 <p class="gif-desc" id="fdesc6"></p>
-                <a class="fdownload" id="fdownload6" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload6" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave7"></div>
+                <div class="graphics" id="fave7"></div>
                 <p class="gif-desc" id="fdesc7"></p>
-                <a class="fdownload" id="fdownload7" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload7" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave8"></div>
+                <div class="graphics" id="fave8"></div>
                 <p class="gif-desc" id="fdesc8"></p>
-                <a class="fdownload" id="fdownload8" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload8" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
         </div>
 
         <div class="row row3">
             <div class="col-3">
-                <div id="fave9"></div>
+                <div class="graphics" id="fave9"></div>
                 <p class="gif-desc" id="fdesc9"></p>
-                <a class="fdownload" id="fdownload9" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload9" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave10"></div>
+                <div class="graphics" id="fave10"></div>
                 <p class="gif-desc" id="fdesc10"></p>
-                <a class="fdownload" id="fdownload10" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload10" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave11"></div>
+                <div class="graphics" id="fave11"></div>
                 <p class="gif-desc" id="fdesc11"></p>
-                <a class="fdownload" id="fdownload11" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload11" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave12"></div>
+                <div class="graphics" id="fave12"></div>
                 <p class="gif-desc" id="fdesc12"></p>
-                <a class="fdownload" id="fdownload12" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload12" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
         </div>
 
         <div class="row row4">
             <div class="col-3">
-                <div id="fave13"></div>
+                <div class="graphics" id="fave13"></div>
                 <p class="gif-desc" id="fdesc13"></p>
-                <a class="fdownload" id="fdownload13" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload13" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave14"></div>
+                <div class="graphics" id="fave14"></div>
                 <p class="gif-desc" id="fdesc14"></p>
-                <a class="fdownload" id="fdownload14" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload14" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave15"></div>
+                <div class="graphics" id="fave15"></div>
                 <p class="gif-desc" id="fdesc15"></p>
-                <a class="fdownload" id="fdownload15" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload15" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <div id="fave16"></div>
+                <div class="graphics" id="fave16"></div>
                 <p class="gif-desc" id="fdesc16"></p>
-                <a class="fdownload" id="fdownload16" target="blank" href="" download><i class="fa fa-download"></i>Download</a>
+                <a class="download fdownload" id="fdownload16" target="blank" href="" download><i class="fa fa-download"></i></a>
             </div>
         </div>
 

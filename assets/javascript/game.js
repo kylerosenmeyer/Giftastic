@@ -8,12 +8,28 @@
 // xhr.done(function(data) { console.log("success got data", data); });
 
 //When the enter button is pushed, run the function that generates the gifWall.
-//Define a variable to count the number of searches, and an empty array to save favorites.
-var searchCounter = 0,
-    favoriteGifs = [];
 
-//hide all the descriptor/download fields
-$(".gif-desc, .download, .saveGif, .favorites, .favSection").fadeOut(0)
+//Before that, hide some stuff
+$(".gif-desc, .download, .saveGif").fadeOut(0)
+$(".favorites, .favSection, .clear").fadeOut(0)
+
+//And after that, before pushing a button, define some stuff. Namely,
+//Define variables to be used throughout functions in the app. searchCounter is used to store the ID of the past search buttons. favBuilder is used to store the image attributes
+//into an object when it moves to storage. favCounter is used to keep track of the savedGifs comeing out of storage back onto the page. image, video, action, title, rating, and id are 
+//all variables to store a different attribute of the gif that comes from the api.
+
+
+
+var searchCounter = 0,
+    favBuilder = 0,
+    favCounter = 0,
+    image = "",
+    video = "",
+    action = "",
+    title = "",
+    rating = "",
+    id = "",
+    favLive = false;
 
 $("#search").keyup( function(event) {
 
@@ -84,7 +100,7 @@ $("#search").keyup( function(event) {
             $("#instruction, #mini").slideUp(2000)
             //and change the margins on the slim box.
             $(".entry").animate( {
-                margin: "-5% 0% 0% -15%",
+                margin: "-3% 0% 5% -15%",
             },2000)
 
             //Finally, clear the search bar and store the search in a new button below to recall later.
@@ -94,71 +110,38 @@ $("#search").keyup( function(event) {
                 "id": "button-"+searchCounter
             }).text(searchTerm);
 
-            $("#past").prepend(oldButton);
+            $("#past").prepend(oldButton).fadeIn(1000);
             $("#button-"+searchCounter).hide(0).fadeIn(1000);
     })
     } 
 });
 
-//After the gifWall is live, listen for a click on any of the gifs, and then toggle the toggle attribute between video and still, changing the gif url on toggle between a moving gif and a still image.
-$("body").on("click", ".gifWall", function() {
+//If a save button gets click, grab all the attributes of that gif's image tag and store it to the session Storage.
 
-    // console.log("This is the initial setting: " + $(this).attr("toggle"))
-    // console.log("This is the initial url: " + $(this).attr("src"))
+$(".saveGif").click( function() {
+    console.log("save clicked!")
 
-    //This code snippet stores the attributes of the clicked gif into variables, and toggles the condition to pause or play the video. On pause, the user sees the title and rating, and gets to choose whether to download or favorite the file.
-    var image = $(this).attr("image-state"),
-        video = $(this).attr("video-state"),
-        action = "still",
-        title = $(this).attr("title"),
-        rating = $(this).attr("rating")
-        id = $(this).attr("id")
+    $(".favorites, .clear").fadeIn(2000)
 
-    if ( $(this).attr("toggle") === "video" ) {
-        $(this).attr("toggle", action).attr("src", image)
-
-        $(this).css({
-            "background-image": $(this).attr("src"),
-            "opacity": 0.6,
-            "position": "relative" 
-        })
-
-        $("#desc"+id).html("Title: " + title + "<br>Rating: " + rating).fadeIn(1000)
-        $("#download"+id).attr("href", video).fadeIn(1000)
-        $("#save"+id).fadeIn(1000)
-        
-
-        console.log("This is the title value: " + $(this).attr("title"))
-        console.log("This is the rating value: " + $(this).attr("rating"))
-    } else if ( $(this).attr("toggle") === "still" ) {
-        action = "video"
-        $(this).attr("toggle", action).attr("src", video)
-        $("#desc"+id).fadeOut(1000)
-        $("#download"+id).fadeOut(1000)
-        $("#save"+id).fadeOut(1000)
+    //These are the attributes going into storage.
+    favBuilder = {
+        "image": image,
+        "video": video,
+        "toggle": action,
+        "title": title,
+        "rating": rating,
+        "id": id
     }
-    // console.log("This is the final setting: " + $(this).attr("toggle"))
-    // console.log("This is the final url: " + $(this).attr("src"))
 
-    $(".saveGif").click( function() {
+    favCounter++
+    console.log("Number of favs saved: " + favCounter)
 
-        $(".favorites").fadeIn(2000)
-        
-        favBuilder = [
-            image,
-            video,
-            action,
-            title,
-            rating,
-            id
-        ]
+    //Put the stringified object into storage.
+    sessionStorage.setItem("favGif"+favCounter,JSON.stringify(favBuilder))
     
-        favoriteGifs.push(favBuilder)
-        sessionStorage.setItem("favorite"+id,JSON.stringify(favoriteGifs))
-    })
-}) 
+})
 
-//If an old search is clicked, bring up that gifWall instead.
+//If an old search is clicked, bring up that gifWall instead. This re-runs the api to bring up fresh images of the old search term. If the user wants to recall a particalur one, save it! 
 
 $("body").on("click", ".oldButton", function() {
     searchURL = $(this).attr("search-URL")
@@ -201,21 +184,145 @@ $("body").on("click", ".oldButton", function() {
     })
 })
 
-
+//When the favorites button is clicked, fade out the main app screen and bring up the favorites grid. This is where we will show the saved gifs.
 
 $(".favorites").click( function() {
-    $(".main").fadeOut(2000)
-    $(".favSection").delay(2000).fadeIn(2000)
+    favLive = true;
+    console.log("this is the favLive value: " + favLive)
+    $(".main").fadeOut(1000)
+    $(".favSection").delay(1000).fadeIn(1000)
+    $(".gif-desc, .download").fadeOut(0)
 
-    var gifStorage = sessionStorage.getItem(JSON.parse(favoriteGifs))
-    console.log("this is the parsed object: " + gifStorage)
-    for ( let j=0; j<16; j++ ) {
-        var favGif = gifStorage.j
-        $("#fave"+j).append(favGif)
+    //This condition checks to see if anything has been saved yet.
+    if ( favCounter !== 0 ) {
+
+        var favCap = favCounter + 1
+        //When true, the app will run a for loop to pull all of the saved gifs out of storage.
+        for ( let j=1; j<favCap; j++ ) {
+            //These two variables store the position of the gif to pull, and extracts and parses it from storage.
+            var favPosition = "favGif"+j,
+                gifStorage = JSON.parse(sessionStorage.getItem(favPosition)),
+
+                //Then the loop puts the properties from the object back into the attribute positions of an image tag
+                faveGif = $("<img>").addClass("gifWall").attr({
+                    "src": gifStorage.video,
+                    "video-state": gifStorage.video,
+                    "image-state": gifStorage.image,
+                    "toggle": "video",
+                    "rating": gifStorage.rating,
+                    "title": gifStorage.title,
+                    "id": j,
+                }); 
+            console.log("this is the position its pulling from storage: " + favPosition)
+            console.log("This is it's title: " + gifStorage.title)
+            
+            //And appends them to favorite grid.
+            $("#fave"+j).append(faveGif)
+            
+        }
+
+
     }
 })
 
+//On the click of the clear button, clear the session storage for the user.
+
+$(".clear").click( function() {
+
+    $(".clear, .favorites, #past").fadeOut(2000)
+    setTimeout( function() {
+        $("#past").empty()
+    }, 4000)
+    sessionStorage.clear()
+    favCounter = 0;
+})
+
+//On the click of the return button, the favorites screen is faded out and the user is brought back to the main app screen.
 $(".return").click( function() {
+    favLive = false;
     $(".favSection").fadeOut(2000)
     $(".main").delay(2000).fadeIn(2000)
 })
+
+
+//After the gifWall is live, listen for a click on any of the gifs, and then toggle the toggle attribute between video and still, changing the gif url on toggle between a moving gif and a still image.
+$("body").on("click", ".gifWall", function() {
+
+    // console.log("This is the initial setting: " + $(this).attr("toggle"))
+    // console.log("This is the initial url: " + $(this).attr("src"))
+
+    //Check to see which screen the user is on. The id targets are slightly different for the favorite section vs. the main section.
+
+    if ( favLive == false ) {
+        //This code snippet stores the attributes of the clicked gif into variables, and toggles the condition to pause or play the video. 
+        image = $(this).attr("image-state"),
+        video = $(this).attr("video-state"),
+        action = "still",
+        title = $(this).attr("title"),
+        rating = $(this).attr("rating")
+        id = $(this).attr("id")
+
+        //This condition checks the toggle value of the gif. On pause, the user sees the title and rating, and gets to choose whether to download or favorite the file.
+        if ( $(this).attr("toggle") === "video" ) {
+            $(this).attr("toggle", action).attr("src", image)
+
+            $(this).css({
+                "background-image": $(this).attr("src"),
+                "opacity": 0.6,
+                "position": "relative" 
+            })
+
+            $("#desc"+id).html("Title: " + title + "<br>Rating: " + rating).fadeIn(1000)
+            $("#download"+id).attr("href", video).fadeIn(1000)
+            $("#save"+id).fadeIn(1000)       
+
+            console.log("This is the title value: " + $(this).attr("title"))
+            console.log("This is the rating value: " + $(this).attr("rating"))
+        } else if ( $(this).attr("toggle") === "still" ) {
+            action = "video"
+            $(this).attr("toggle", action).attr("src", video)
+            $("#desc"+id).fadeOut(1000)
+            $("#download"+id).fadeOut(1000)
+            $("#save"+id).fadeOut(1000)
+        }
+        // console.log("This is the final setting: " + $(this).attr("toggle"))
+        // console.log("This is the final url: " + $(this).attr("src"))
+    } else if ( favLive == true ) {
+
+        console.log("this is the favGifs toggle: " + $(this).attr("toggle"))
+
+        //This code snippet stores the attributes of the clicked gif into variables, and toggles the condition to pause or play the video. 
+        image = $(this).attr("image-state"),
+        video = $(this).attr("video-state"),
+        action = "still",
+        title = $(this).attr("title"),
+        rating = $(this).attr("rating")
+        id = $(this).attr("id")
+        console.log("this is the id in favLive=true: " + id)
+
+        //This condition checks the toggle value of the gif. On pause, the user sees the title and rating, and gets to choose whether to download or favorite the file.
+        if ( $(this).attr("toggle") === "video" ) {
+            $(this).attr("toggle", action).attr("src", image)
+
+            $(this).css({
+                "background-image": $(this).attr("src"),
+                "opacity": 0.6,
+                "position": "relative" 
+            })
+
+            $("#fdesc"+id).html("Title: " + title + "<br>Rating: " + rating).fadeIn(1000)
+            $("#fdownload"+id).attr("href", video).fadeIn(1000)        
+
+            console.log("This is the title value: " + $(this).attr("title"))
+            console.log("This is the rating value: " + $(this).attr("rating"))
+        } else if ( $(this).attr("toggle") === "still" ) {
+            action = "video"
+            $(this).attr("toggle", action).attr("src", video)
+            $("#fdesc"+id).fadeOut(1000)
+            $("#fdownload"+id).fadeOut(1000)
+        }
+        // console.log("This is the final setting: " + $(this).attr("toggle"))
+        // console.log("This is the final url: " + $(this).attr("src"))
+
+    }
+}) 
