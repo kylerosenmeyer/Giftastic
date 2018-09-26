@@ -331,31 +331,33 @@ $("body").on("click", ".gifWall", function() {
 
 //This section handles the event that the user wants to click and drag the entry box around.
 
+if ( window.innerWidth > window.innerHeight ) {
     
-$(".entry").mousedown( function() {
-    console.log("mouse is down")
-        
+    $(".entry").mousedown( function() {
+        console.log("mouse is down")
+            
 
-    $("body").mousemove( function() {
-            console.log("mouse is on the move")
-        $(".entry").css({
-            top: event.pageY,
-            left: event.pageX
+        $("body").mousemove( function() {
+                console.log("mouse is on the move")
+            $(".entry").css({
+                top: event.pageY,
+                left: event.pageX
+            })
         })
-    })
 
-    $(".entry").mouseup( function() {
-        console.log("mouse is up")
-        $(this).css({
-            top: event.pageY,
-            left: event.pageX
+        $(".entry").mouseup( function() {
+            console.log("mouse is up")
+            $(this).css({
+                top: event.pageY,
+                left: event.pageX
+            })
+            $("body").off("mousemove")
+            
         })
-        $("body").off("mousemove")
-        
+
+
+
     })
-
-
-
-})
+}
         
 
