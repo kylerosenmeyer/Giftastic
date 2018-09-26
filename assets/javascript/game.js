@@ -99,9 +99,11 @@ $("#search").keyup( function(event) {
             //As the gifs are displaying, collapse the entry box down to just the search bar.
             $("#instruction, #mini").slideUp(2000)
             //and change the margins on the slim box.
-            $(".entry").animate( {
-                margin: "-3% 0% 5% -15%",
-            },2000)
+            if ( window.innerHeight < window.innerWidth ) {
+                $(".entry").animate( {
+                    margin: "-3% 0% 5% -15%",
+                },2000)
+            }
 
             //Finally, clear the search bar and store the search in a new button below to recall later.
             $("#search").val("");
@@ -326,3 +328,34 @@ $("body").on("click", ".gifWall", function() {
 
     }
 }) 
+
+//This section handles the event that the user wants to click and drag the entry box around.
+
+    
+$(".entry").mousedown( function() {
+    console.log("mouse is down")
+        
+
+    $("body").mousemove( function() {
+            console.log("mouse is on the move")
+        $(".entry").css({
+            top: event.pageY,
+            left: event.pageX
+        })
+    })
+
+    $(".entry").mouseup( function() {
+        console.log("mouse is up")
+        $(this).css({
+            top: event.pageY,
+            left: event.pageX
+        })
+        $("body").off("mousemove")
+        
+    })
+
+
+
+})
+        
+
