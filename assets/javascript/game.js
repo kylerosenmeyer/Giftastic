@@ -238,7 +238,7 @@ $(".favorites").click( function() {
 //On the click of the clear button, clear the session storage for the user.
 
 $(".clear").click( function() {
-    $(".clear, .favorites, #past, .gif-desc, .download, saveGif").fadeOut(2000)
+    $(".clear, .favorites, #past, .gif-desc, .download, .saveGif").fadeOut(2000)
     setTimeout( function() {
         $("#past").empty()
     }, 4000)
