@@ -40,7 +40,7 @@ if ( favCounter === "null" ) {
 $("#search").keyup( function(event) {
 
     //Store the value of the search term as the variable "searchTerm"
-    var searchTerm = $("#search").val()
+    var searchTerm = $("#search").val().toLowerCase()
     
 
      //Check to see if the user typed anything, if not, bring back a "blank" gifWall
@@ -56,7 +56,8 @@ $("#search").keyup( function(event) {
     event.preventDefault();
 
     //Check to see if the event key is the enter key, and go get the gifs!
-    if ( event.keyCode === 13 ) {
+    if ( ( event.keyCode === 13 ) && ( searchTerm !== $(".oldButton").attr("data-name") ) ) {
+
     
         searchCounter++
         // console.log("this is the searchCounter: " + searchCounter)
@@ -115,7 +116,8 @@ $("#search").keyup( function(event) {
             $("#search").val("");
             var oldButton = $("<button>").addClass("oldButton").attr({
                 "search-URL": searchURL,
-                "id": "button-"+searchCounter
+                "id": "button-"+searchCounter,
+                "data-name": searchTerm,
             }).text(searchTerm);
 
             $("#past").prepend(oldButton).fadeIn(1000);
