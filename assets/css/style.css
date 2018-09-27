@@ -284,6 +284,9 @@ h4 {
     border: 0;
 }
 
+
+/*This is the media query section */
+
 @media screen and (max-width: 600px) {
     .entry, #favEntry {
         position: relative;

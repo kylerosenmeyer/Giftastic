@@ -16,20 +16,26 @@ $(".favorites, .favSection, .clear").fadeOut(0)
 //And after that, before pushing a button, define some stuff. Namely,
 //Define variables to be used throughout functions in the app. searchCounter is used to store the ID of the past search buttons. favBuilder is used to store the image attributes
 //into an object when it moves to storage. favCounter is used to keep track of the savedGifs comeing out of storage back onto the page. image, video, action, title, rating, and id are 
-//all variables to store a different attribute of the gif that comes from the api.
+//all variables to store a different attribute of the gif that comes from the api. 
+//If there are favorites stored in sessionStorage, note that by setting the value of favCounter to the value in storage.
 
 
 
 var searchCounter = 0,
     favBuilder = 0,
-    favCounter = 0,
     image = "",
     video = "",
     action = "",
     title = "",
     rating = "",
     id = "",
-    favLive = false;
+    favLive = false,
+    favCounter = JSON.parse(sessionStorage.getItem("favCounter"));
+
+//if no favorites are in storage, the value from storage will be null. In that case, set the counter to zero.
+if ( favCounter === "null" ) {
+    favCounter = 0
+}
 
 $("#search").keyup( function(event) {
 
@@ -53,7 +59,7 @@ $("#search").keyup( function(event) {
     if ( event.keyCode === 13 ) {
     
         searchCounter++
-        console.log("this is the searchCounter: " + searchCounter)
+        // console.log("this is the searchCounter: " + searchCounter)
 
         $(".gif-desc, .download, .saveGif").fadeOut(1000)
 
@@ -69,9 +75,9 @@ $("#search").keyup( function(event) {
             var gifBank = response.data
 
             //Conosle log the JSON object and the search URL for reference.
-            console.log("this is the JSON: ");
-            console.log(response)
-            console.log("this is the searchURL: " + searchURL)
+            // console.log("this is the JSON: ");
+            // console.log(response)
+            // console.log("this is the searchURL: " + searchURL)
 
             //Run a loop that generates a randome number between 1 and 500, gets the gif at that positiion, builds the image tag, and fade in the gif.
 
@@ -121,9 +127,11 @@ $("#search").keyup( function(event) {
 //If a save button gets click, grab all the attributes of that gif's image tag and store it to the session Storage.
 
 $(".saveGif").click( function() {
-    console.log("save clicked!")
+    // console.log("save clicked!")
+    favCounter++
 
     $(".favorites, .clear").fadeIn(2000)
+
 
     //These are the attributes going into storage.
     favBuilder = {
@@ -132,11 +140,12 @@ $(".saveGif").click( function() {
         "toggle": action,
         "title": title,
         "rating": rating,
-        "id": id
+        "id": favCounter,
     }
-
-    favCounter++
+    
     console.log("Number of favs saved: " + favCounter)
+    //Put the faveCounter in storage to remember for the session.
+    sessionStorage.setItem("favCounter", JSON.stringify(favCounter))
 
     //Put the stringified object into storage.
     sessionStorage.setItem("favGif"+favCounter,JSON.stringify(favBuilder))
@@ -147,7 +156,7 @@ $(".saveGif").click( function() {
 
 $("body").on("click", ".oldButton", function() {
     searchURL = $(this).attr("search-URL")
-    console.log("this is the revived search URL: " + searchURL)
+    // console.log("this is the revived search URL: " + searchURL)
 
     $.ajax({ 
         url: searchURL,
@@ -157,9 +166,9 @@ $("body").on("click", ".oldButton", function() {
         var gifBank = response.data
 
         //Conosle log the JSON object and the search URL for reference.
-        console.log("this is the JSON: ");
-        console.log(response)
-        console.log("this is the searchURL: " + searchURL)
+        // console.log("this is the JSON: ");
+        // console.log(response)
+        // console.log("this is the searchURL: " + searchURL)
 
         //Run a loop that generates a randome number between 1 and 500, gets the gif at that positiion, builds the image tag, and fade in the gif.
 
@@ -190,7 +199,7 @@ $("body").on("click", ".oldButton", function() {
 
 $(".favorites").click( function() {
     favLive = true;
-    console.log("this is the favLive value: " + favLive)
+    // console.log("this is the favLive value: " + favLive)
     $(".main").fadeOut(1000)
     $(".favSection").delay(1000).fadeIn(1000)
     $(".gif-desc, .download").fadeOut(0)
@@ -213,17 +222,16 @@ $(".favorites").click( function() {
                     "toggle": "video",
                     "rating": gifStorage.rating,
                     "title": gifStorage.title,
-                    "id": j,
+                    "id": gifStorage.id,
                 }); 
-            console.log("this is the position its pulling from storage: " + favPosition)
-            console.log("This is it's title: " + gifStorage.title)
+
+            // console.log("this is the position its pulling from storage: " + favPosition)
+            // console.log("This is it's title: " + gifStorage.title)
             
             //And appends them to favorite grid.
             $("#fave"+j).append(faveGif)
             
         }
-
-
     }
 })
 
@@ -245,7 +253,6 @@ $(".return").click( function() {
     $(".favSection").fadeOut(2000)
     $(".main").delay(2000).fadeIn(2000)
 })
-
 
 //After the gifWall is live, listen for a click on any of the gifs, and then toggle the toggle attribute between video and still, changing the gif url on toggle between a moving gif and a still image.
 $("body").on("click", ".gifWall", function() {
@@ -278,8 +285,8 @@ $("body").on("click", ".gifWall", function() {
             $("#download"+id).attr("href", video).fadeIn(1000)
             $("#save"+id).fadeIn(1000)       
 
-            console.log("This is the title value: " + $(this).attr("title"))
-            console.log("This is the rating value: " + $(this).attr("rating"))
+            // console.log("This is the title value: " + $(this).attr("title"))
+            // console.log("This is the rating value: " + $(this).attr("rating"))
         } else if ( $(this).attr("toggle") === "still" ) {
             action = "video"
             $(this).attr("toggle", action).attr("src", video)
@@ -291,7 +298,7 @@ $("body").on("click", ".gifWall", function() {
         // console.log("This is the final url: " + $(this).attr("src"))
     } else if ( favLive == true ) {
 
-        console.log("this is the favGifs toggle: " + $(this).attr("toggle"))
+        // console.log("this is the favGifs toggle: " + $(this).attr("toggle"))
 
         //This code snippet stores the attributes of the clicked gif into variables, and toggles the condition to pause or play the video. 
         image = $(this).attr("image-state"),
@@ -300,7 +307,7 @@ $("body").on("click", ".gifWall", function() {
         title = $(this).attr("title"),
         rating = $(this).attr("rating")
         id = $(this).attr("id")
-        console.log("this is the id in favLive=true: " + id)
+        // console.log("this is the id in favLive=true: " + id)
 
         //This condition checks the toggle value of the gif. On pause, the user sees the title and rating, and gets to choose whether to download or favorite the file.
         if ( $(this).attr("toggle") === "video" ) {
@@ -315,8 +322,8 @@ $("body").on("click", ".gifWall", function() {
             $("#fdesc"+id).html("Title: " + title + "<br>Rating: " + rating).fadeIn(1000)
             $("#fdownload"+id).attr("href", video).fadeIn(1000)        
 
-            console.log("This is the title value: " + $(this).attr("title"))
-            console.log("This is the rating value: " + $(this).attr("rating"))
+            // console.log("This is the title value: " + $(this).attr("title"))
+            // console.log("This is the rating value: " + $(this).attr("rating"))
         } else if ( $(this).attr("toggle") === "still" ) {
             action = "video"
             $(this).attr("toggle", action).attr("src", video)
@@ -333,20 +340,23 @@ $("body").on("click", ".gifWall", function() {
 
 if ( window.innerWidth > window.innerHeight ) {
     
+    //When the mouse is pressed down on the class "entry", free the top and left css attributes for the class 
+    //and change them to the location of the mouse.
     $(".entry").mousedown( function() {
-        console.log("mouse is down")
+        // console.log("mouse is down")
             
 
         $("body").mousemove( function() {
-                console.log("mouse is on the move")
+                // console.log("mouse is on the move")
             $(".entry").css({
                 top: event.pageY,
                 left: event.pageX
             })
         })
 
+        //When the mouse is released, note the last position of the mouse and unbind the mousemove.
         $(".entry").mouseup( function() {
-            console.log("mouse is up")
+            // console.log("mouse is up")
             $(this).css({
                 top: event.pageY,
                 left: event.pageX
@@ -354,8 +364,6 @@ if ( window.innerWidth > window.innerHeight ) {
             $("body").off("mousemove")
             
         })
-
-
 
     })
 }
